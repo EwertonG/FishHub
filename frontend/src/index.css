@@ -1,0 +1,764 @@
+/* FishHub CSS Design System - Estilo Aquarismo Clássico / phpBB */
+:root {
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Outfit', system-ui, sans-serif;
+
+  /* Theme: Dark (Ocean Abyss) */
+  --bg-primary: #030c14;      /* Azul Abissal */
+  --bg-secondary: #081724;    /* Água de Aquário */
+  --bg-tertiary: #0e2436;     /* Bloco de Recife */
+  --text-primary: #e2f0fc;    /* Luz na Água */
+  --text-secondary: #8cb2d4;  /* Tons de Azul Esmaecido */
+  --text-muted: #577d9c;      /* Sombra de Algas */
+  
+  --accent: #d4af37;          /* Dourado Arenoso (Substrato) */
+  --accent-light: #f3df9f;    
+  --accent-hover: #b89225;
+  --accent-glow: rgba(212, 175, 55, 0.2);
+  
+  --border-color: #163652;    /* Vidro de Aquário */
+  --tank-rim: #d4af37;        /* Moldura Dourada */
+  --card-bg: #061320;
+  --header-bg: #092136;       /* Barra de Título */
+  --glass-bg: rgba(6, 19, 32, 0.85);
+
+  --seaweed: #2e8b57;         /* Verde Planta (Algas/Musgo) */
+  --seaweed-hover: #226b42;
+  --coral: #e06d53;           /* Laranja Coral (Alertas) */
+  --coral-hover: #c45b42;
+  
+  --radius-sm: 2px;           /* Bordas mais quadradas, estilo software */
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.25s ease-in-out;
+  --max-width: 1200px;
+  
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.8);
+  
+  --toast-bg: #081724;
+  --like-color: #e06d53;
+  --star-color: #d4af37;
+}
+
+
+
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg-secondary);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+  background-image: linear-gradient(180deg, rgba(3, 12, 20, 0) 0%, rgba(3, 12, 20, 0.9) 100%),
+                    repeating-linear-gradient(0deg, rgba(212, 175, 55, 0.01) 0px, rgba(212, 175, 55, 0.01) 1px, transparent 1px, transparent 4px);
+  background-attachment: fixed;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  color: var(--accent-light);
+  text-decoration: underline;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+  border-left: 1px solid var(--border-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border: 2px solid var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-light);
+}
+
+/* Layout Utilities */
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.section {
+  padding: 32px 0;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 2rem;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px;
+  margin-bottom: 20px;
+}
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.25rem; }
+
+/* Tank Frame - Layout clássico simulando vidro de aquário */
+.tank-frame {
+  border: 3px double var(--tank-rim);
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow-md), inset 0 0 15px rgba(0, 0, 0, 0.5);
+  margin-bottom: 24px;
+  overflow: hidden;
+}
+
+.tank-header {
+  background-color: var(--header-bg);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--accent-light);
+  padding: 10px 16px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tank-body {
+  padding: 20px;
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--header-bg);
+  border-bottom: 3px double var(--tank-rim);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.logo-link:hover {
+  color: var(--accent-light);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  list-style: none;
+}
+
+.nav-item {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+}
+
+.nav-item:hover, .nav-item.active {
+  color: var(--accent);
+  background-color: var(--bg-secondary);
+  text-decoration: none;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+
+
+
+/* Buttons (Classic solid Bevel style) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #030c14;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-light);
+}
+
+.btn-secondary {
+  background-color: var(--seaweed);
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: var(--seaweed-hover);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.btn-danger {
+  background-color: var(--coral);
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: var(--coral-hover);
+}
+
+/* Input Fields */
+.form-group {
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.form-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.form-control {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  padding: 10px;
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  width: 100%;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 5px var(--accent-glow);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+/* Cards (Fish Grid) */
+.fish-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.fish-card {
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.fish-card:hover {
+  border-color: var(--accent);
+}
+
+.fish-card-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fish-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.fish-card-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: var(--header-bg);
+  border: 1px solid var(--border-color);
+  color: var(--accent-light);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.fish-card-favorite-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(3, 12, 20, 0.8);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.fish-card-favorite-btn:hover, .fish-card-favorite-btn.active {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.fish-card-content {
+  padding: 16px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.fish-card-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.fish-card-scientific {
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.fish-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 16px;
+  line-height: 1.4;
+  flex-grow: 1;
+}
+
+.fish-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed var(--border-color);
+  padding-top: 10px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Catalog Sidebar */
+.catalog-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .catalog-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.filter-sidebar {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  border-radius: var(--radius-md);
+  text-align: left;
+}
+
+.filter-title {
+  font-size: 1rem;
+  color: var(--accent-light);
+  margin-bottom: 12px;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 8px;
+}
+
+.filter-section {
+  margin-bottom: 16px;
+}
+
+.filter-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+/* Fish Details Sheet */
+.fish-details-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .fish-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fish-details-img-card {
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  background-color: var(--bg-secondary);
+  position: relative;
+}
+
+.fish-details-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.fish-info-panel {
+  text-align: left;
+}
+
+.fish-details-header {
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.fish-details-category {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.fish-details-scientific {
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* Water Parameter Controller Board (Looks like retro aquarium controller) */
+.parameter-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.parameter-card {
+  background: #02070c;
+  border: 2px solid #163652;
+  padding: 10px 14px;
+  position: relative;
+  box-shadow: inset 0 0 10px rgba(0,255,255,0.05);
+}
+
+.parameter-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.parameter-value {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #00ffff; /* Neon cyan water parameters */
+  font-family: monospace;
+  margin-top: 4px;
+}
+
+
+
+
+/* Classic Forum Layout (Traditional Table View) */
+.forum-table-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  background-color: var(--header-bg);
+  border: 1px solid var(--border-color);
+  color: var(--accent-light);
+  font-weight: 700;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+}
+
+.forum-rows-container {
+  border: 1px solid var(--border-color);
+  border-top: none;
+  background: var(--bg-secondary);
+}
+
+.forum-row-item {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  align-items: center;
+  text-align: left;
+}
+
+.forum-row-item:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.forum-row-title-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.forum-row-title-text {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.forum-row-author-info {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.forum-row-stat-col {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.forum-nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.forum-nav-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px 12px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.forum-nav-btn:hover, .forum-nav-btn.active {
+  background: var(--bg-tertiary);
+  color: var(--accent);
+}
+
+/* Comment Box */
+.comment-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: 6px;
+  margin-bottom: 8px;
+}
+
+.comment-author {
+  font-weight: 700;
+  color: var(--accent-light);
+}
+
+/* Profile statistics blocks */
+.profile-stats-summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.profile-stat-box {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  text-align: center;
+}
+
+.profile-stat-num {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.profile-stat-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+/* Tabs */
+.profile-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.profile-tab {
+  background: none;
+  border: none;
+  padding: 10px 16px;
+  color: var(--text-secondary);
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.profile-tab.active {
+  color: var(--accent);
+  border-bottom: 2px solid var(--accent);
+  margin-bottom: -2px;
+}
+
+/* Toasts */
+.toast-container {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1000;
+}
+
+.toast {
+  background: var(--header-bg);
+  border: 1px solid var(--accent);
+  color: var(--text-primary);
+  padding: 10px 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: var(--shadow-lg);
+  animation: slideIn 0.2s ease-out;
+}
+
+.toast-error {
+  border-color: var(--coral);
+}
+
+@keyframes slideIn {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Miscellaneous utilities */
+.text-center { text-align: center; }
+.mt-4 { margin-top: 16px; }
+.mb-4 { margin-bottom: 16px; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.flex-gap { display: flex; gap: 8px; align-items: center; }
+.search-wrapper { position: relative; }
+.search-input { padding-left: 32px; }
+.search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); font-size: 0.8rem; opacity: 0.6; }
+.badge { background: var(--bg-tertiary); border: 1px solid var(--border-color); color: var(--text-secondary); font-size: 0.75rem; padding: 2px 6px; font-weight: 700; }
+.hero { text-align: center; padding: 40px 0; border-bottom: 2px dashed var(--border-color); margin-bottom: 24px; }
+.hero p { color: var(--text-secondary); margin-top: 8px; font-size: 1.1rem; }
+.footer { border-top: 3px double var(--tank-rim); background: var(--header-bg); padding: 20px 0; text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 40px; }
