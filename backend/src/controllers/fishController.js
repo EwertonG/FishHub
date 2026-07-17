@@ -52,7 +52,7 @@ export const fishController = {
       phMax,
       tempMin,
       tempMax,
-      size,
+      averageSize,
       lifespan,
       diet,
       compatibility,
@@ -65,6 +65,13 @@ export const fishController = {
     }
 
     try {
+      let formattedCompatibility = [];
+      if (Array.isArray(compatibility)) {
+        formattedCompatibility = compatibility;
+      } else if (typeof compatibility === 'string') {
+        formattedCompatibility = compatibility.split(',').map(item => item.trim()).filter(Boolean);
+      }
+
       const newFish = await Fish.create({
         commonName,
         scientificName,
@@ -74,10 +81,10 @@ export const fishController = {
         phMax: phMax ? parseFloat(phPhFormat(phMax)) : 7.0,
         tempMin: tempMin ? parseFloat(tempMin) : 24,
         tempMax: tempMax ? parseFloat(tempMax) : 26,
-        size: size ? parseFloat(size) : null,
+        averageSize: averageSize ? parseFloat(averageSize) : null,
         lifespan: lifespan ? parseInt(lifespan) : null,
         diet: diet || 'Onívoro',
-        compatibility: compatibility || [],
+        compatibility: formattedCompatibility,
         imageUrl: imageUrl || 'https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
         description: description || '',
         createdBy: req.user.id
@@ -115,7 +122,7 @@ export const fishController = {
         phMax,
         tempMin,
         tempMax,
-        size,
+        averageSize,
         lifespan,
         diet,
         compatibility,
@@ -127,6 +134,13 @@ export const fishController = {
         return res.status(400).json({ message: 'Nome comum, científico e categoria são obrigatórios.' });
       }
 
+      let formattedCompatibility = [];
+      if (Array.isArray(compatibility)) {
+        formattedCompatibility = compatibility;
+      } else if (typeof compatibility === 'string') {
+        formattedCompatibility = compatibility.split(',').map(item => item.trim()).filter(Boolean);
+      }
+
       const updatedFish = await Fish.update(id, {
         commonName,
         scientificName,
@@ -136,10 +150,10 @@ export const fishController = {
         phMax: phMax ? parseFloat(phPhFormat(phMax)) : 7.0,
         tempMin: tempMin ? parseFloat(tempMin) : 24,
         tempMax: tempMax ? parseFloat(tempMax) : 26,
-        size: size ? parseFloat(size) : null,
+        averageSize: averageSize ? parseFloat(averageSize) : null,
         lifespan: lifespan ? parseInt(lifespan) : null,
         diet: diet || 'Onívoro',
-        compatibility: compatibility || [],
+        compatibility: formattedCompatibility,
         imageUrl: imageUrl || 'https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3',
         description: description || ''
       });
