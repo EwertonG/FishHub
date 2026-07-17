@@ -11,7 +11,7 @@ export default function FishDetails() {
   const [loading, setLoading] = useState(true);
   const [deleting, setDeleting] = useState(false);
 
-  // Integration Modal States
+  
   const [showAddModal, setShowAddModal] = useState(false);
   const [aquariums, setAquariums] = useState([]);
   const [selectedAquariumId, setSelectedAquariumId] = useState('');
@@ -156,7 +156,7 @@ export default function FishDetails() {
         </div>
         <div className="tank-body">
           <div className="fish-details-grid">
-            {/* Image Card */}
+            
             <div className="fish-details-img-card" style={{ border: '3px double var(--border-color)' }}>
               <img src={fish.imageUrl} alt={fish.commonName} className="fish-details-img" />
               {isCreator && (
@@ -171,7 +171,7 @@ export default function FishDetails() {
               )}
             </div>
 
-            {/* Info Panel */}
+            
             <div className="fish-info-panel">
               <header className="fish-details-header">
                 <span className="fish-details-category">{fish.category}</span>
@@ -195,7 +195,7 @@ export default function FishDetails() {
                   <span className="badge">⚖️ Temperamento: {fish.temperament}</span>
                 </div>
 
-                {/* Integration: Add to My Aquarium */}
+                
                 {user && (
                   <button onClick={handleOpenAddModal} className="btn btn-primary" style={{ marginTop: '16px', width: '100%', display: 'flex', gap: '8px' }}>
                     <span>📥</span> Adicionar ao Meu Aquário
@@ -210,7 +210,7 @@ export default function FishDetails() {
                 </p>
               </div>
 
-              {/* Water parameters */}
+              
               <h3 style={{ fontSize: '1.1rem', marginBottom: '12px', color: 'var(--accent-light)' }}>Parâmetros da Água</h3>
               <div className="parameter-grid">
                 <div className="parameter-card">
@@ -223,7 +223,7 @@ export default function FishDetails() {
                 </div>
               </div>
 
-              {/* Core Specs */}
+              
               <h3 style={{ fontSize: '1.1rem', marginBottom: '12px', color: 'var(--accent-light)' }}>Especificações Biológicas</h3>
               <div className="fish-spec-list" style={{ border: '1px solid var(--border-color)', padding: '12px', background: 'var(--bg-primary)', borderRadius: 'var(--radius-md)', marginBottom: '24px' }}>
                 <div className="spec-item">
@@ -244,7 +244,7 @@ export default function FishDetails() {
                 </div>
               </div>
 
-              {/* Compatibility */}
+              
               <div>
                 <h3 style={{ fontSize: '1.1rem', marginBottom: '8px', color: 'var(--accent-light)' }}>Coabitação / Compatibilidade</h3>
                 {fish.compatibility && fish.compatibility.length > 0 ? (
@@ -264,7 +264,7 @@ export default function FishDetails() {
         </div>
       </div>
 
-      {/* Integration Modal Overlay */}
+      
       {showAddModal && (
         <div style={{
           position: 'fixed',

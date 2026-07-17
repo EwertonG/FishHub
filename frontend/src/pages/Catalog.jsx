@@ -7,7 +7,7 @@ export default function Catalog() {
   const [fishes, setFishes] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Filter States
+  
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState('');
   const [temperament, setTemperament] = useState('');
@@ -91,7 +91,7 @@ export default function Catalog() {
       </header>
 
       <div className="catalog-layout">
-        {/* Filters Sidebar styled as control panel */}
+        
         <aside className="filter-sidebar" style={{ border: '3px double var(--tank-rim)' }}>
           <div className="flex-between" style={{ marginBottom: '16px', borderBottom: '1px dashed var(--border-color)', paddingBottom: '10px' }}>
             <h3 className="filter-title" style={{ border: 'none', padding: 0, margin: 0 }}>Painel de Filtros</h3>
@@ -192,7 +192,7 @@ export default function Catalog() {
           </div>
         </aside>
 
-        {/* Catalog Main Content (inside Tank Frame style) */}
+        
         <main className="tank-frame">
           <div className="tank-header">
             <span>🐟 Espécies Encontradas ({fishes.length})</span>

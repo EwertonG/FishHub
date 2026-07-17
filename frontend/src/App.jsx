@@ -16,7 +16,7 @@ import AquariumsList from './pages/AquariumsList';
 import AquariumForm from './pages/AquariumForm';
 import AquariumDetails from './pages/AquariumDetails';
 
-// Helper component for Private/Protected routes
+
 function PrivateRoute({ children }) {
   const { user, loading } = useAuth();
   if (loading) {
@@ -37,7 +37,7 @@ export default function App() {
           <Navbar />
           <main style={{ flex: '1 0 auto' }}>
             <Routes>
-              {/* Public Routes */}
+              
               <Route path="/" element={<Home />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
@@ -46,7 +46,7 @@ export default function App() {
               <Route path="/forum" element={<Forum />} />
               <Route path="/posts/:id" element={<PostDetails />} />
 
-              {/* Protected Routes */}
+              
               <Route
                 path="/fishes/new"
                 element={
@@ -72,7 +72,7 @@ export default function App() {
                 }
               />
 
-              {/* Aquariums Protected Routes */}
+              
               <Route
                 path="/aquariums"
                 element={
@@ -106,7 +106,7 @@ export default function App() {
                 }
               />
 
-              {/* Fallback */}
+              
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>

@@ -7,18 +7,18 @@ export default function AquariumDetails() {
   const navigate = useNavigate();
   const { token, showToast } = useAuth();
 
-  // Aquarium state
+  
   const [aquarium, setAquarium] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Catalog species (for adding fish)
+  
   const [catalogFishes, setCatalogFishes] = useState([]);
 
-  // Active Tab
-  const [activeTab, setActiveTab] = useState('dashboard'); // dashboard, inhabitants, equipment, parameters, maintenance, feeding, gallery
+  
+  const [activeTab, setActiveTab] = useState('dashboard'); 
 
-  // Sub-resource Add Form States
-  // Inhabitants
+  
+  
   const [showInhabitantForm, setShowInhabitantForm] = useState(false);
   const [inhType, setInhType] = useState('Peixe');
   const [inhSpeciesId, setInhSpeciesId] = useState('');
@@ -27,14 +27,14 @@ export default function AquariumDetails() {
   const [inhAcquisitionDate, setInhAcquisitionDate] = useState(new Date().toISOString().split('T')[0]);
   const [inhNotes, setInhNotes] = useState('');
 
-  // Equipment
+  
   const [showEquipmentForm, setShowEquipmentForm] = useState(false);
   const [eqName, setEqName] = useState('');
   const [eqType, setEqType] = useState('Filtro');
   const [eqSpecs, setEqSpecs] = useState('');
   const [eqNotes, setEqNotes] = useState('');
 
-  // Parameters
+  
   const [showParamForm, setShowParamForm] = useState(false);
   const [pmDate, setPmDate] = useState(new Date().toISOString().split('T')[0]);
   const [pmTemp, setPmTemp] = useState('');
@@ -46,14 +46,14 @@ export default function AquariumDetails() {
   const [pmKh, setPmKh] = useState('');
   const [pmNotes, setPmNotes] = useState('');
 
-  // Maintenance
+  
   const [showMaintForm, setShowMaintForm] = useState(false);
   const [mtDate, setMtDate] = useState(new Date().toISOString().split('T')[0]);
   const [mtType, setMtType] = useState('TPA');
   const [mtDesc, setMtDesc] = useState('');
   const [mtImage, setMtImage] = useState('');
 
-  // Feeding
+  
   const [showFeedForm, setShowFeedForm] = useState(false);
   const [fdDate, setFdDate] = useState(new Date().toISOString().split('T')[0]);
   const [fdTime, setFdTime] = useState('08:00');
@@ -61,13 +61,13 @@ export default function AquariumDetails() {
   const [fdQty, setFdQty] = useState('');
   const [fdNotes, setFdNotes] = useState('');
 
-  // Gallery
+  
   const [showPhotoForm, setShowPhotoForm] = useState(false);
   const [galImage, setGalImage] = useState('');
   const [galCaption, setGalCaption] = useState('');
   const [galDate, setGalDate] = useState(new Date().toISOString().split('T')[0]);
 
-  // Loading/submitting block
+  
   const [actionLoading, setActionLoading] = useState(false);
 
   const fetchAquariumDetails = async () => {
@@ -113,7 +113,7 @@ export default function AquariumDetails() {
     }
   }, [id, token]);
 
-  // Subresource Submissions
+  
   const handleAddInhabitant = async (e) => {
     e.preventDefault();
     setActionLoading(true);
@@ -127,7 +127,7 @@ export default function AquariumDetails() {
         speciesNamePayload = selected.commonName;
       }
     } else {
-      speciesIdPayload = ''; // No catalog ID for non-fish items
+      speciesIdPayload = ''; 
     }
 
     if (!speciesNamePayload) {
@@ -437,7 +437,7 @@ export default function AquariumDetails() {
     }
   };
 
-  // Helper Stats Calculation
+  
   const getDaysSinceSetup = (setupDate) => {
     const diffTime = Math.abs(new Date() - new Date(setupDate));
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -494,7 +494,7 @@ export default function AquariumDetails() {
         </div>
       </header>
 
-      {/* Main Dashboard view */}
+      
       <div className="tank-frame">
         <div className="tank-header">
           <span>📊 Painel de Monitoramento (Dashboard)</span>
@@ -502,22 +502,22 @@ export default function AquariumDetails() {
         </div>
         <div className="tank-body">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px', marginBottom: '24px' }}>
-            {/* Total Inhabitants */}
+            
             <div style={{ background: 'var(--bg-secondary)', padding: '16px', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', textAlign: 'center' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--text-muted)' }}>Habitantes</div>
               <div style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--accent)', marginTop: '4px' }}>{getInhabitantsCount()}</div>
             </div>
-            {/* Setup Age */}
+            
             <div style={{ background: 'var(--bg-secondary)', padding: '16px', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-sm)', textAlign: 'center' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--text-muted)' }}>Tempo de Montagem</div>
               <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginTop: '8px' }}>{getDaysSinceSetup(aquarium.setupDate)}</div>
             </div>
-            {/* Temp parameter */}
+            
             <div style={{ background: '#02070c', padding: '16px', border: '2px solid var(--border-color)', textAlign: 'center' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--text-muted)' }}>Temperatura Atual</div>
               <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#00ffff', fontFamily: 'monospace', marginTop: '4px' }}>{getLatestParameterVal('temperature')}</div>
             </div>
-            {/* pH parameter */}
+            
             <div style={{ background: '#02070c', padding: '16px', border: '2px solid var(--border-color)', textAlign: 'center' }}>
               <div style={{ fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--text-muted)' }}>pH Atual</div>
               <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#00ffff', fontFamily: 'monospace', marginTop: '4px' }}>{getLatestParameterVal('ph')}</div>
@@ -532,7 +532,7 @@ export default function AquariumDetails() {
         </div>
       </div>
 
-      {/* Tabs list */}
+      
       <div className="profile-tabs" style={{ marginBottom: '24px' }}>
         <button className={`profile-tab ${activeTab === 'dashboard' ? 'active' : ''}`} onClick={() => setActiveTab('dashboard')}>
           Dashboard
@@ -557,13 +557,13 @@ export default function AquariumDetails() {
         </button>
       </div>
 
-      {/* TAB CONTENTS */}
+      
       <div className="animate-fade-in">
         
-        {/* DASHBOARD TAB (History summary) */}
+        
         {activeTab === 'dashboard' && (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px', textAlign: 'left' }}>
-            {/* Latest parameters summary */}
+            
             <div className="tank-frame">
               <div className="tank-header">
                 <span>Leituras de Água Recentes</span>
@@ -585,7 +585,7 @@ export default function AquariumDetails() {
               </div>
             </div>
 
-            {/* Latest maintenance summary */}
+            
             <div className="tank-frame">
               <div className="tank-header">
                 <span>Manutenções Recentes</span>
@@ -612,7 +612,7 @@ export default function AquariumDetails() {
           </div>
         )}
 
-        {/* INHABITANTS TAB */}
+        
         {activeTab === 'inhabitants' && (
           <div style={{ textAlign: 'left' }}>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
@@ -722,7 +722,7 @@ export default function AquariumDetails() {
               </div>
             )}
 
-            {/* List */}
+            
             {(!aquarium.inhabitants || aquarium.inhabitants.length === 0) ? (
               <p style={{ color: 'var(--text-secondary)' }}>Nenhum habitante cadastrado neste aquário.</p>
             ) : (
@@ -760,7 +760,7 @@ export default function AquariumDetails() {
           </div>
         )}
 
-        {/* EQUIPMENT TAB */}
+        
         {activeTab === 'equipment' && (
           <div style={{ textAlign: 'left' }}>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
@@ -835,7 +835,7 @@ export default function AquariumDetails() {
               </div>
             )}
 
-            {/* List */}
+            
             {(!aquarium.equipment || aquarium.equipment.length === 0) ? (
               <p style={{ color: 'var(--text-secondary)' }}>Nenhum equipamento instalado neste aquário.</p>
             ) : (
@@ -865,7 +865,7 @@ export default function AquariumDetails() {
           </div>
         )}
 
-        {/* WATER PARAMETERS TAB */}
+        
         {activeTab === 'parameters' && (
           <div style={{ textAlign: 'left' }}>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
@@ -934,7 +934,7 @@ export default function AquariumDetails() {
               </div>
             )}
 
-            {/* List */}
+            
             {(!aquarium.parameters || aquarium.parameters.length === 0) ? (
               <p style={{ color: 'var(--text-secondary)' }}>Sem histórico de parâmetros medidos.</p>
             ) : (
@@ -976,7 +976,7 @@ export default function AquariumDetails() {
           </div>
         )}
 
-        {/* MAINTENANCE TAB */}
+        
         {activeTab === 'maintenance' && (
           <div style={{ textAlign: 'left' }}>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
@@ -1027,7 +1027,7 @@ export default function AquariumDetails() {
               </div>
             )}
 
-            {/* List */}
+            
             {(!aquarium.maintenances || aquarium.maintenances.length === 0) ? (
               <p style={{ color: 'var(--text-secondary)' }}>Sem manutenções registradas.</p>
             ) : (
@@ -1056,7 +1056,7 @@ export default function AquariumDetails() {
           </div>
         )}
 
-        {/* FEEDINGS TAB */}
+        
         {activeTab === 'feeding' && (
           <div style={{ textAlign: 'left' }}>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
@@ -1106,7 +1106,7 @@ export default function AquariumDetails() {
               </div>
             )}
 
-            {/* List */}
+            
             {(!aquarium.feedings || aquarium.feedings.length === 0) ? (
               <p style={{ color: 'var(--text-secondary)' }}>Sem registros de alimentações.</p>
             ) : (
@@ -1137,7 +1137,7 @@ export default function AquariumDetails() {
           </div>
         )}
 
-        {/* GALLERY TAB */}
+        
         {activeTab === 'gallery' && (
           <div style={{ textAlign: 'left' }}>
             <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '16px' }}>
@@ -1176,7 +1176,7 @@ export default function AquariumDetails() {
               </div>
             )}
 
-            {/* List */}
+            
             {(!aquarium.gallery || aquarium.gallery.length === 0) ? (
               <p style={{ color: 'var(--text-secondary)' }}>Nenhuma foto adicionada à galeria.</p>
             ) : (

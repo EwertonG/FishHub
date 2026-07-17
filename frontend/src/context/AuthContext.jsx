@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
           const userData = await res.json();
           setUser(userData);
         } else {
-          // Token expired or invalid
+          
           localStorage.removeItem('fishhub_token');
           setToken(null);
           setUser(null);

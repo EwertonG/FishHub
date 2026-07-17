@@ -6,14 +6,14 @@ export default function Profile() {
   const { user, token, updateProfile, toggleFavorite, showToast } = useAuth();
   const navigate = useNavigate();
 
-  // Tab State
-  const [activeTab, setActiveTab] = useState('favorites'); // favorites, posts, settings
+  
+  const [activeTab, setActiveTab] = useState('favorites'); 
 
-  // Profile Stats & Data states
+  
   const [stats, setStats] = useState(null);
   const [loadingStats, setLoadingStats] = useState(true);
 
-  // Settings Edit states
+  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -66,7 +66,7 @@ export default function Profile() {
       await updateProfile(name, email, password);
       setPassword('');
       setConfirmPassword('');
-      // Refetch stats to keep everything synced
+      
       fetchStats();
     } catch (err) {
       showToast(err.message || 'Erro ao salvar alterações.', 'error');
@@ -77,7 +77,7 @@ export default function Profile() {
 
   const handleRemoveFavorite = async (fishId) => {
     const isRemoved = await toggleFavorite(fishId);
-    // Sync local stats array
+    
     if (stats) {
       setStats(prev => ({
         ...prev,
@@ -106,7 +106,7 @@ export default function Profile() {
         </div>
       </div>
 
-      {/* Profile Header Summary */}
+      
       <div className="profile-header-card">
         <div className="profile-avatar-info">
           <div>
@@ -134,7 +134,7 @@ export default function Profile() {
         </div>
       </div>
 
-      {/* Tabs Menu */}
+      
       <div className="profile-tabs">
         <button
           className={`profile-tab ${activeTab === 'favorites' ? 'active' : ''}`}
@@ -156,7 +156,7 @@ export default function Profile() {
         </button>
       </div>
 
-      {/* Tab Content */}
+      
       <div className="animate-fade-in">
         {activeTab === 'favorites' && (
           <div>

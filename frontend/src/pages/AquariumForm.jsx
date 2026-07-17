@@ -8,7 +8,7 @@ export default function AquariumForm() {
   const { token, showToast } = useAuth();
   const isEditMode = !!id;
 
-  // Form Field States
+  
   const [name, setName] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const [type, setType] = useState('Água Doce');
@@ -18,15 +18,15 @@ export default function AquariumForm() {
   const [substrate, setSubstrate] = useState('');
   const [notes, setNotes] = useState('');
 
-  // Image Upload Type States
-  const [imageType, setImageType] = useState('url'); // 'url' or 'file'
+  
+  const [imageType, setImageType] = useState('url'); 
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState('');
 
   const [loading, setLoading] = useState(isEditMode);
   const [submitting, setSubmitting] = useState(false);
 
-  // Clean up preview object URL on unmount
+  
   useEffect(() => {
     return () => {
       if (imagePreview) {
@@ -71,7 +71,7 @@ export default function AquariumForm() {
           setType(data.type);
           setVolume(data.volume);
           setDimensions(data.dimensions || '');
-          // Format date to YYYY-MM-DD
+          
           if (data.setupDate) {
             setSetupDate(new Date(data.setupDate).toISOString().split('T')[0]);
           }
@@ -86,7 +86,7 @@ export default function AquariumForm() {
       }
       fetchAquarium();
     } else {
-      // Default to today's date for creation
+      
       setSetupDate(new Date().toISOString().split('T')[0]);
     }
   }, [id, isEditMode, token, navigate]);
@@ -103,7 +103,7 @@ export default function AquariumForm() {
     try {
       let finalImageUrl = imageUrl;
 
-      // Handle local image upload if applicable
+      
       if (imageType === 'file' && imageFile) {
         const formData = new FormData();
         formData.append('image', imageFile);

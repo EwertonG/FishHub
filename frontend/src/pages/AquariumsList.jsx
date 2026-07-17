@@ -32,7 +32,7 @@ export default function AquariumsList() {
     }
   }, [token]);
 
-  // Helper functions to get stats from nesting arrays
+  
   const getInhabitantsCount = (inhabitants) => {
     if (!inhabitants || inhabitants.length === 0) return 0;
     return inhabitants.reduce((acc, current) => acc + (current.quantity || 0), 0);
@@ -40,7 +40,7 @@ export default function AquariumsList() {
 
   const getLatestParameter = (parameters, field) => {
     if (!parameters || parameters.length === 0) return 'N/A';
-    // Sort parameters by date descending
+    
     const sorted = [...parameters].sort((a, b) => new Date(b.date) - new Date(a.date));
     const val = sorted[0][field];
     if (val === undefined || val === null) return 'N/A';
@@ -104,7 +104,7 @@ export default function AquariumsList() {
                   Litragem: <strong>{aq.volume} Litros</strong> {aq.dimensions ? `(${aq.dimensions})` : ''}
                 </p>
 
-                {/* Dashboard preview values */}
+                
                 <div style={{ background: 'var(--bg-primary)', padding: '10px', borderRadius: 'var(--radius-sm)', fontSize: '0.85rem', marginBottom: '16px', display: 'flex', flexDirection: 'column', gap: '6px', border: '1px solid var(--border-color)' }}>
                   <div className="flex-between">
                     <span style={{ color: 'var(--text-muted)' }}>Habitantes:</span>

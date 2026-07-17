@@ -11,11 +11,11 @@ export default function PostDetails() {
   const [loading, setLoading] = useState(true);
   const [likeLoading, setLikeLoading] = useState(false);
   
-  // Comment states
+  
   const [commentText, setCommentText] = useState('');
   const [commentSubmitting, setCommentSubmitting] = useState(false);
 
-  // Edit Post states
+  
   const [isEditingPost, setIsEditingPost] = useState(false);
   const [editTitle, setEditTitle] = useState('');
   const [editContent, setEditContent] = useState('');
@@ -66,7 +66,7 @@ export default function PostDetails() {
         throw new Error(data.message || 'Erro ao curtir.');
       }
       
-      // Update local state
+      
       setPost(prev => ({
         ...prev,
         likesCount: data.likesCount,
@@ -106,7 +106,7 @@ export default function PostDetails() {
 
       showToast('Comentário publicado.');
       setCommentText('');
-      // Update local comment list
+      
       setPost(prev => ({
         ...prev,
         comments: [...(prev.comments || []), data]
@@ -173,7 +173,7 @@ export default function PostDetails() {
 
       showToast('Publicação atualizada!');
       setIsEditingPost(false);
-      fetchPostDetails(); // Reload content
+      fetchPostDetails(); 
     } catch (err) {
       showToast(err.message, 'error');
     } finally {
@@ -292,7 +292,7 @@ export default function PostDetails() {
           </form>
         </div>
       ) : (
-        /* Discussion Thread */
+        
         <article className="post-main">
           <div className="post-card-header" style={{ marginBottom: '20px', borderBottom: '1px solid var(--border-color)', paddingBottom: '12px' }}>
             <div className="post-card-author">
@@ -325,11 +325,11 @@ export default function PostDetails() {
         </article>
       )}
 
-      {/* Comments Section */}
+      
       <section className="comments-section">
         <h3 className="comments-title">Comentários ({post.comments?.length || 0})</h3>
 
-        {/* Comment input form */}
+        
         {user ? (
           <form onSubmit={handleAddComment} className="comment-input-card">
             <div className="form-group" style={{ marginBottom: '16px' }}>
@@ -358,7 +358,7 @@ export default function PostDetails() {
           </div>
         )}
 
-        {/* List of comments */}
+        
         {post.comments && post.comments.length > 0 ? (
           post.comments.map(comment => {
             const isCommentAuthor = user && comment.authorId === user.id;

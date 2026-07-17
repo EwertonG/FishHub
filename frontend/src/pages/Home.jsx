@@ -51,7 +51,7 @@ export default function Home() {
         </p>
       </header>
 
-      {/* Popular Fishes Section (Tank Frame style) */}
+      
       <section className="section">
         <div className="tank-frame">
           <div className="tank-header">
@@ -106,7 +106,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Recent Forum Posts Section (phpBB table layout style) */}
+      
       <section className="section" style={{ paddingTop: 0 }}>
         <div className="tank-frame">
           <div className="tank-header">
@@ -126,14 +126,14 @@ export default function Home() {
             </div>
           ) : (
             <div>
-              {/* Classic table header */}
+              
               <div className="forum-table-header">
                 <span>Tópico</span>
                 <span style={{ textAlign: 'center' }}>Curtidas / Comentários</span>
                 <span style={{ textAlign: 'right' }}>Categoria</span>
               </div>
               
-              {/* Table rows */}
+              
               <div className="forum-rows-container">
                 {recentPosts.map(post => (
                   <div key={post._id} className="forum-row-item">

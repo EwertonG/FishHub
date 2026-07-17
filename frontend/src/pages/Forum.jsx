@@ -119,7 +119,7 @@ export default function Forum() {
         )}
       </div>
 
-      {/* New Post Box */}
+      
       {showNewPostForm && user && (
         <div className="tank-frame animate-fade-in" style={{ marginBottom: '24px' }}>
           <div className="tank-header">
@@ -189,9 +189,9 @@ export default function Forum() {
         </div>
       )}
 
-      {/* Forum Layout */}
+      
       <div className="forum-layout">
-        {/* Categories Navigation */}
+        
         <aside>
           <div style={{ position: 'sticky', top: '96px' }}>
             <h3 style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px', textAlign: 'left', paddingLeft: '8px' }}>
@@ -218,7 +218,7 @@ export default function Forum() {
               ))}
             </ul>
 
-            {/* Sidebar Search */}
+            
             <div style={{ marginTop: '20px', padding: '16px', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: 'var(--radius-md)' }}>
               <label className="filter-section-title" style={{ display: 'block', marginBottom: '8px' }}>Pesquisa Rápida</label>
               <div className="search-wrapper">
@@ -235,7 +235,7 @@ export default function Forum() {
           </div>
         </aside>
 
-        {/* Discussions List in Table Format */}
+        
         <main className="tank-frame">
           <div className="tank-header">
             <span>💬 Discussões em Andamento</span>
@@ -256,14 +256,14 @@ export default function Forum() {
             </div>
           ) : (
             <div>
-              {/* Classic table header */}
+              
               <div className="forum-table-header">
                 <span>Tópico</span>
                 <span style={{ textAlign: 'center' }}>Curtidas / Comentários</span>
                 <span style={{ textAlign: 'right' }}>Categoria</span>
               </div>
               
-              {/* Table rows */}
+              
               <div className="forum-rows-container">
                 {posts.map(post => (
                   <div key={post._id} className="forum-row-item">

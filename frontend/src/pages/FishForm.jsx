@@ -8,7 +8,7 @@ export default function FishForm() {
   const { token, user, showToast } = useAuth();
   const isEditMode = !!id;
 
-  // Form Field States
+  
   const [commonName, setCommonName] = useState('');
   const [scientificName, setScientificName] = useState('');
   const [category, setCategory] = useState('Água Doce');
@@ -24,15 +24,15 @@ export default function FishForm() {
   const [compatibility, setCompatibility] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   
-  // Image Upload Type States
-  const [imageType, setImageType] = useState('url'); // 'url' or 'file'
+  
+  const [imageType, setImageType] = useState('url'); 
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState('');
   
   const [loading, setLoading] = useState(isEditMode);
   const [submitting, setSubmitting] = useState(false);
 
-  // If in edit mode, fetch fish details
+  
   useEffect(() => {
     if (!token) {
       showToast('Você precisa estar logado para acessar esta página.', 'error');
@@ -49,7 +49,7 @@ export default function FishForm() {
           }
           const data = await res.json();
           
-          // Verify permissions: only creator or admin can edit
+          
           const isAdmin = user && (user.email === 'admin@admin.com' || user.id === '6a583ed9a838f74b25344fcc');
           if (data.createdBy !== user.id && !isAdmin) {
             showToast('Você não tem permissão para editar esta espécie.', 'error');
@@ -82,7 +82,7 @@ export default function FishForm() {
     }
   }, [id, isEditMode, token, user, navigate]);
 
-  // Clean up preview object URL on unmount
+  
   useEffect(() => {
     return () => {
       if (imagePreview) {
@@ -115,7 +115,7 @@ export default function FishForm() {
     try {
       let finalImageUrl = imageUrl;
 
-      // Handle local image upload if applicable
+      
       if (imageType === 'file' && imageFile) {
         const formData = new FormData();
         formData.append('image', imageFile);
@@ -200,7 +200,7 @@ export default function FishForm() {
         </p>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-          {/* Nomes */}
+          
           <div className="form-row">
             <div className="form-group">
               <label className="form-label" htmlFor="commonName">Nome Popular *</label>
@@ -228,7 +228,7 @@ export default function FishForm() {
             </div>
           </div>
 
-          {/* Categoria e Imagem */}
+          
           <div className="form-row">
             <div className="form-group">
               <label className="form-label" htmlFor="category">Categoria *</label>
@@ -313,7 +313,7 @@ export default function FishForm() {
             </div>
           </div>
 
-          {/* Descrição */}
+          
           <div className="form-group">
             <label className="form-label" htmlFor="description">Descrição Detalhada *</label>
             <textarea
@@ -327,7 +327,7 @@ export default function FishForm() {
             ></textarea>
           </div>
 
-          {/* Temperamento e Dieta */}
+          
           <div className="form-row">
             <div className="form-group">
               <label className="form-label" htmlFor="temperament">Temperamento</label>
@@ -355,7 +355,7 @@ export default function FishForm() {
             </div>
           </div>
 
-          {/* Tamanho e Expectativa */}
+          
           <div className="form-row">
             <div className="form-group">
               <label className="form-label" htmlFor="averageSize">Tamanho Médio (cm)</label>
@@ -383,7 +383,7 @@ export default function FishForm() {
             </div>
           </div>
 
-          {/* Parâmetros de pH e Temperatura */}
+          
           <div className="form-row">
             <div className="form-group">
               <label className="form-label" htmlFor="phMin">pH Mínimo</label>
@@ -433,7 +433,7 @@ export default function FishForm() {
             </div>
           </div>
 
-          {/* Compatibilidade */}
+          
           <div className="form-group">
             <label className="form-label" htmlFor="compatibility">Compatibilidade (separadas por vírgula)</label>
             <input
@@ -446,7 +446,7 @@ export default function FishForm() {
             />
           </div>
 
-          {/* Submit Actions */}
+          
           <div style={{ display: 'flex', gap: '16px', justifyContent: 'flex-end', marginTop: '20px' }}>
             <button
               type="button"
