@@ -7,7 +7,7 @@ async function seed() {
   try {
     const db = await connectDB();
     
-    // 1. Garantir ou obter um usuário para ser autor/criador
+    
     let user = await db.collection('users').findOne({});
     
     if (!user) {
@@ -31,7 +31,7 @@ async function seed() {
     const userId = user._id;
     const userName = user.name;
 
-    // 2. Peixes para adicionar
+    
     const fishesToSeed = [
       {
         commonName: 'Neon Cardinal',
@@ -210,7 +210,7 @@ async function seed() {
     }
     console.log(`Povoamento de peixes completo. ${fishAddedCount} novos peixes adicionados.`);
 
-    // 3. Tópicos do fórum para adicionar
+    
     const postsToSeed = [
       {
         title: 'Como fazer a ciclagem correta de um aquário?',

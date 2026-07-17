@@ -16,13 +16,12 @@ export async function connectDB() {
     await client.connect();
     db = client.db(dbName);
     console.log(`Successfully connected to MongoDB database: ${dbName}`);
-    
-    // Create initial indexes for search performance and uniqueness
+
     await db.collection('users').createIndex({ email: 1 }, { unique: true });
     await db.collection('fishes').createIndex({ commonName: 'text', scientificName: 'text', category: 'text' });
     await db.collection('posts').createIndex({ title: 'text', content: 'text' });
     await db.collection('aquariums').createIndex({ userId: 1 });
-    
+
     return db;
   } catch (error) {
     console.error('Failed to connect to MongoDB', error);
